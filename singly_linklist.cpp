@@ -225,7 +225,7 @@ int main(){
     Cycle_detect(head);
     createloop(head,6);
     Cycle_detect(head);
-cout<<"okkk";
+
    
     // node* newhead=reversek(head , 2);
     // display(newhead);
