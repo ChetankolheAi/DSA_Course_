@@ -1,1 +1,2 @@
-    // insertattail(head,5);
+
+    Cycle_detect_SF(head);
