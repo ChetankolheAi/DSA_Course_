@@ -225,6 +225,7 @@ int main(){
     Cycle_detect(head);
     createloop(head,6);
     Cycle_detect(head);
+    cout<<"ok";
 
    
     // node* newhead=reversek(head , 2);
