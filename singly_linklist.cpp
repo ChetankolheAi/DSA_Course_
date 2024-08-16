@@ -1,4 +1,6 @@
 #include<iostream>
+#include<map>
+#include<string>
 using namespace std;
 
 class node{
@@ -47,6 +49,30 @@ void insertat_k(node* head, int value, int position){
     }
     n->next=temp->next;
     temp->next=n;
+    
+}
+
+
+void createloop(node* head, int loopstart){
+    if(!head){
+    return;
+    }
+    node* Loopstartnode= NULL;
+    node* current =head;
+
+    int index=0;
+    while(current->next){
+        if(index==loopstart){
+            Loopstartnode=current;
+
+        }
+        current= current->next;
+        index++;
+    }
+        if(Loopstartnode){
+            current->next=Loopstartnode;
+        }
+
     
 }
 void display(node* &head){
@@ -157,9 +183,29 @@ void palindrome(node* &head){
         if(temp1==NULL){
             cout<<"Yes , The Given LinkList Is Palindrome"<<endl;
         }
+       
     }
 
 
+
+
+}
+
+void Cycle_detect(node* &head ){
+
+    map<node*,bool>m;
+    node* temp=head;
+    while(temp!=NULL){
+        if(m[temp]==true){
+            cout<<"Cycle present"<<endl;
+            return;
+        }
+        else{
+            m[temp]=true;
+        }
+         temp=temp->next;
+    }
+    cout<<"Cycle Not present"<<endl;
 
 
 }
@@ -174,10 +220,12 @@ int main(){
     insertattail(head,6);
     insertattail(head,5);
     insertattail(head,9);
+    insertattail(head,9);
     insertat_k(head,5,2);
-    display(head);
-    middlenode(head);
-    palindrome(head);
+    Cycle_detect(head);
+    createloop(head,6);
+    Cycle_detect(head);
+
    
     // node* newhead=reversek(head , 2);
     // display(newhead);
