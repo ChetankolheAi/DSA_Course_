@@ -278,6 +278,7 @@ void insertattail_withtail(node* newnode, node* &head, node* &tail ){
 
     tail->next = newnode;
     tail = newnode;
+    cout<<"ok";
     
   }
 
