@@ -133,27 +133,26 @@ void middlenode(node* &head){
 
 }
 
-node* reversek(node* &head , int k){
-       node* crrtptr=head;
-       node* prevptr=NULL;
-       node* nextptr;
-       int count=0;
-       while(crrtptr!=NULL && count<k){
-            nextptr=crrtptr->next;
-            crrtptr->next=prevptr;
 
-            prevptr=crrtptr;
-            crrtptr=nextptr;
-            count++;
-
-       }
-       if(head!=NULL){
-        node* newhead=reversek(nextptr,k);
-        head->next=newhead;
-       }
-
-       return prevptr;
+node* reversek(node* &head, int k) {
+    node* crrtptr = head;
+    node* prevptr = NULL;
+    node* nextptr;
+    int count = 0;
+    while (crrtptr != NULL && count < k) {
+        nextptr = crrtptr->next;
+        crrtptr->next = prevptr;
+        prevptr = crrtptr;
+        crrtptr = nextptr;
+        count++;
+    }
+    if (crrtptr != NULL) { 
+        node* newhead = reversek(crrtptr, k); 
+        head->next = newhead; 
+    }
+    return prevptr; 
 }
+
 
 void palindrome(node* &head){
     node* fast=head;
@@ -347,31 +346,80 @@ void zero_one_two_sort(node* head){
 
 
 }
+
+void add_1(node* &head){
+   
+    head=reverse(head);
+    node* temp=head;
+    int carry=1;
+
+    while(temp!=NULL){
+        int sum =carry+temp->data;
+        int digit =sum%10;
+        carry=(sum-digit)/10;
+        temp->data=digit;
+
+        if(temp->next==NULL && carry!=0){
+            //check karo   at last node carry zero hey ya nhai aagar zero he to well and good but aagar zero nahi he to create new node
+                node* newnode = new node(carry);
+                newnode->next=NULL;  
+                temp->next=newnode;
+                temp=temp->next;
+        }
+        temp=temp->next;
+    }
+    node* newhead=reverse(head);
+    head=newhead;
+}
+
+node* ppp(node* &head,int k){
+    node* prev=NULL;
+    node* crrt=head;
+    node* next;
+    int count=0;
+    while(crrt!=NULL && count<k){
+        next=crrt->next;
+        crrt->next=prev;
+        prev=crrt;
+        crrt=next;
+        count++;
+
+    }
+    if(head!=NULL)
+    {
+    node* newnode=ppp(next,k);
+    head->next=newnode;
+    }
+   return prev;
+}
 int main(){
 
     node* head= NULL;
-    insertattail(head,0);
-    insertattail(head,0);
+    insertattail(head,9);
+    insertattail(head,8);
+    insertattail(head,5);
+  insertattail(head,9);
+
     insertattail(head,1);
-    insertattail(head,1);
-    insertattail(head,1);
+    insertattail(head,5);
     insertattail(head,1);
     insertattail(head,0);
     display(head);
-
-
+   
 
 
     //16.08.2024
-    Cycle_detect(head);
-    del_duplicate_sorted(head);
-    zero_one_two_sort(head);
-    display(head);
+    // Cycle_detect(head);
+    // del_duplicate_sorted(head);
+    // zero_one_two_sort(head);
+    // display(head);
 
+    //17.8.2024 
+    //add_1(head);
+    // node* reversed_head=reversek(head,2);
+    // display(reversed_head);
+    //practice ___ reverse_in_group....
 
-   
-    // node* newhead=reversek(head , 2);
-    // display(newhead);
        
     
    
