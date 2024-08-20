@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
 int main(){
-    cout<<"will df do it";
+    cout<<"wiell df do it";
     
 }
