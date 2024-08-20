@@ -78,7 +78,7 @@ void createloop(node* head, int loopstart){
 void display(node* &head){
     node* temp=head;
     if(head==NULL){
-       cout<<"Link listf empty"; 
+       cout<<"Link lisbtf empty"; 
     }
     else{
         while(temp!=NULL){
