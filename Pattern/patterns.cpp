@@ -68,7 +68,7 @@ void pattern7(int n){
             cout<<"  ";
         }
         for(int k=0;k<i+1;k++){
-            cout<<i<<" ";
+            cout<<k+1<<" ";
         }
         cout<<endl;
         
@@ -77,12 +77,17 @@ void pattern7(int n){
 }
 
 void pattern6(int n){
+    int count=1;
+    int count1=count;
     for(int i=n;i>0;i--){
         for(int j=i;j>0;j--){
-            cout<<j<<" ";
+            
+            cout<<count<<" ";
+            count++;
         }
+        count1++;
+        count=count1;
         cout<<endl;
-
     }
 }
 
@@ -108,6 +113,9 @@ int main(){
         break;
         case 5:
         pattern5(5);
+
+
+        //21.08.2024
         break;
         case 6:
         pattern6(5);
