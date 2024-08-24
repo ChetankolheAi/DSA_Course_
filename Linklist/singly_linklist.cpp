@@ -12,6 +12,18 @@ class node{
         next=NULL;
     }
 };
+int length_ofll(node* &head){
+    node* temp=head;
+    int count=0;
+    while(temp!=NULL){
+        count++;
+        temp=temp->next;
+        
+    }
+
+    return count;
+}
+
 void insertattail(node* &head, int value){
     node* n = new node(value);
     node* temp=head;
@@ -39,16 +51,31 @@ void insertathead(node* &head, int value){
     }
 }
 
-void insertat_k(node* head, int value, int position){
+void insertat_k(node* &head, int value, int position){
     node* n=new node(value);
     node* temp=head;
     int count=0;
-    while (count<position-2){
-        count++;
-        temp=temp->next;
+    int len=length_ofll(head);
+     if(position==0){
+        
+            n->next=head;
+            head=n;
     }
-    n->next=temp->next;
-    temp->next=n;
+    else if(len+1<position){
+        cout<<"Invalid Position given to add the node "<<endl;
+        return;
+    }
+    
+    else{
+        while (count<position-2){
+            count++;
+            temp=temp->next;
+        }
+        n->next=temp->next;
+        temp->next=n;
+
+    }
+    
     
 }
 
@@ -89,17 +116,6 @@ void display(node* &head){
     }
 }
 
-int length_ofll(node* &head){
-    node* temp=head;
-    int count=0;
-    while(temp!=NULL){
-        count++;
-        temp=temp->next;
-        
-    }
-
-    return count;
-}
 
 node* reverse(node* &head){
     node* prevptr=NULL;
@@ -398,12 +414,12 @@ int main(){
     insertattail(head,9);
     insertattail(head,8);
     insertattail(head,5);
-  insertattail(head,9);
-
+    insertattail(head,9);
     insertattail(head,1);
     insertattail(head,5);
     insertattail(head,1);
     insertattail(head,0);
+    insertat_k(head,100,0);
     display(head);
    
 
