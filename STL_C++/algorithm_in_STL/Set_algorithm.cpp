@@ -16,7 +16,7 @@ int main(){
     second.push_back(4);
     second.push_back(5);
     second.push_back(6);
-    second.push_back(7);
+    second.push_back(0);
     
     //Remove Duplicate values
     // set_union(first.begin(),first.end(),second.begin(),second.end(),inserter(result,result.begin()));
