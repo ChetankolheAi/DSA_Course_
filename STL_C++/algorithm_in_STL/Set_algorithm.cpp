@@ -15,7 +15,7 @@ int main(){
     second.push_back(3);
     second.push_back(4);
     second.push_back(5);
-    second.push_back(6);
+    second.push_back(1);
     second.push_back(0);
     
     //Remove Duplicate values
