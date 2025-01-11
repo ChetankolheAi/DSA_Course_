@@ -3,6 +3,25 @@
 
 using namespace std;
 
+    int mountain_array(int arr[], int n){
+        int temp = -1;
+        int start = 0;
+        int end = n-1;
+        int mid = start+(end-start)/2;
+        while(start<end){
+            if(arr[mid]<arr[mid+1]){
+                
+                start = mid +1;
+            }
+            else{
+                end= mid;
+                
+            }
+            mid = start+(end-start)/2;
+        }
+        return mid;
+
+    }
 
     int first(int arr[],int n , int target){
         int temp = -1;
@@ -60,20 +79,21 @@ using namespace std;
     }
 int main(){
     int target = 5;
-    int arr[8]= {1,2,2,2,3,4,4,5};
+    int arr[8]= {1,2,3,4,9,2,1,0};
     int n = sizeof(arr)/sizeof(arr[0]);
-    int first_index = first(arr,n ,target);
-    int last_index = second(arr,n, target);
+    // int first_index = first(arr,n ,target);
+    // int last_index = second(arr,n, target);
 
-
-    if(first_index != -1 && last_index != -1){
+    int index = mountain_array(arr,n);
+    cout<<index;
+    // if(first_index != -1 && last_index != -1){
         
-        cout<<"Your Target "<<target << " is Occured "<<(last_index-first_index)+1<<" times";
-    }
-    else
-    {
-        cout<<"No Element Found"<<endl;
-    }
+    //     cout<<"Your Target "<<target << " is Occured "<<(last_index-first_index)+1<<" times";
+    // }
+    // else
+    // {
+    //     cout<<"No Element Found"<<endl;
+    // }
         
 
 
