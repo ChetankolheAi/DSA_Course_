@@ -78,21 +78,88 @@ class Graphs{
         dfsapply(src,visited);
 
     }
+
+    void prims_algorithm(int src){
+        queue<int>q;
+        unordered_map<int,bool>visited;
+        unordered_map<int,bool>visited_weight;
+
+        q.push(src);
+        visited[src]=true;
+        visited[src]=true;
+
+        while(!q.empty()){
+
+            int Frontnode = q.front();
+            cout<<Frontnode<<",";
+            q.pop();
+
+            for (auto neigh : maplist[Frontnode]) {
+
+                int node = neigh.first;  
+                int weight = neigh.second;  
+
+                if(!visited[node]){
+                    q.push(node);
+                    visited_weight[weight]=true;
+                    visited[node]=true;
+                }
+
+        }
+    }
+    }
+    bool Cycle_Check_directed_graph(int node ,unordered_map<int,bool>& visited , unordered_map<int,bool>& path){
+        visited[node]=true;
+        path[node]=true;
+
+        for(auto neigh : maplist[node]){
+
+            if(!visited[neigh.first]){
+                bool ans = Cycle_Check_directed_graph(neigh.first , visited , path);
+                if(ans){
+                    return true;
+                }
+
+            }
+            else if(visited[neigh.first] && path[neigh.first]){
+                return true;
+            }
+        }
+        path[node] = false;
+        return false;
+
+    }
+
+    bool isCyclic(int n) {
+
+        unordered_map<int, bool> visited;
+        unordered_map<int,bool> path;
+     
+
+        for (int i = 0;i<n;i++){
+            if (!visited[i]) {
+                if (Cycle_Check_directed_graph(i, visited,path)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 };
 int main(){
      Graphs g;
-     g.add(0,1,2,1);
-     g.add(0,2,2,1);
-     g.add(0,8,2,1);
-     g.add(0,6,2,1);
-     g.add(1,3,2,1);
-     g.add(2,3,2,1);
-     g.add(3,4,2,1);
-     g.add(3,5,2,1);
-     g.add(4,5,2,1);
-     g.display(4);
+    g.add(0,1,2,1);
+    g.add(1,2,2,1);
+    g.add(2,3,2,1);
      
-     g.BFS(0);
-     g.DFS(8);
+    bool ans =g.isCyclic(4);
+     if(ans){
+        cout<<"Cycle present"<<endl;
+
+     }
+     else{
+        cout<<"nOt"<<endl;
+     }
      return 0;
 }

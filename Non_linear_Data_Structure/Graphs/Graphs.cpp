@@ -71,22 +71,73 @@ class Graphs{
         unordered_map<int , bool>visited;
         DFSapply(src,visited);
     }
+
+    bool Cycle_Check(int src ,unordered_map<int,bool>& visited){
+        queue<int> q;
+        // unordered_map<int,bool> visited;
+        unordered_map<int,int> parent;
+        q.push(src);
+        visited[src]=true;
+        parent[src] = -1;
+
+        while(!q.empty()){
+            
+            int Frontnode = q.front();
+         
+            q.pop();
+
+            for(auto neighbour : maplist[Frontnode]){
+
+                int node= neighbour;
+                if(!visited[node]){
+                    q.push(node);
+                    visited[node]=true;
+                    parent[node] = Frontnode;
+
+                }
+                else if(visited[node] && node != parent[Frontnode]){
+                    return true;
+                }
+            }
+        }
+        return false;
+
+    }
+     bool isCyclic() {
+        unordered_map<int, bool> visited;
+        unordered_map<int, int> parent;
+
+        for (auto node : maplist) {
+            if (!visited[node.first]) {
+                if (Cycle_Check(node.first, visited)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+    
 };
 int main(){
-     Graphs g;
+
+    Graphs g;
     g.add(0,1,1);
-    g.add(0,2,1);
-    g.add(0,8,1);
-    g.add(0,6,1);
-    g.add(1,3,1); n b
-    g.add(2,3,1);
-    g.add(3,4,1);
-    g.add(3,5,1);
-    g.add(4,5,1);
-    g.display(4);
+    g.add(1,2,1);
+    g.add(2,0,1);
+    g.display(3);
     cout<<endl<<"BFS :-";
     g.BFS(0);
     cout<<endl<<"DFS :-";
     g.DFS(8);
+
+    int n=3;
+    if (g.isCyclic()) {
+        cout <<endl<< "Cycle Present" << endl;
+    } else {
+        cout <<endl<< "Cycle Not Present" << endl;
+    }
+
     return 0;
 }
