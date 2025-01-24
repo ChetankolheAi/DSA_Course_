@@ -155,6 +155,8 @@ node* reversek(node* &head, int k) {
     node* prevptr = NULL;
     node* nextptr;
     int count = 0;
+
+    // Reverse first k nodes of the linked list
     while (crrtptr != NULL && count < k) {
         nextptr = crrtptr->next;
         crrtptr->next = prevptr;
@@ -162,11 +164,15 @@ node* reversek(node* &head, int k) {
         crrtptr = nextptr;
         count++;
     }
+
+    // Recursively call for the list starting from currentptr
     if (crrtptr != NULL) { 
         node* newhead = reversek(crrtptr, k); 
         head->next = newhead; 
     }
-    return prevptr; 
+
+    // prevptr is the new head of the reversed list
+    head = prevptr; return head;
 }
 
 
@@ -419,7 +425,10 @@ int main(){
     insertattail(head,5);
     insertattail(head,1);
     insertattail(head,0);
-    insertat_k(head,100,0);
+
+    display(head);
+    reversek(head,2);
+
     display(head);
    
 
